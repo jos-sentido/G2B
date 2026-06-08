@@ -3,6 +3,8 @@ import Base from "../layouts/Base.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import Icon from "../components/Icon.astro";
+import FlowLines from "../components/FlowLines.astro";
+import Monogram from "../components/Monogram.astro";
 import { brand, stats, solutions, modelo, capacity, experience, audiences } from "../data/site";
 
 const totalCapacity = Object.values(capacity).flat().reduce((a, b) => a + b.qty, 0);
@@ -24,7 +26,7 @@ const readout = [
   <main id="inicio">
     <!-- ============ 01 · HERO EDITORIAL ASIMÉTRICO ============ -->
     <section class="relative bg-wave text-white overflow-hidden">
-      <div class="absolute inset-0 blueprint-dark opacity-70"></div>
+      <FlowLines tone="dark" />
       <div class="container-g2b relative z-10 grid items-center gap-12 pt-16 pb-28 lg:grid-cols-12 lg:gap-8 lg:pt-24 lg:pb-36">
         <!-- Columna texto -->
         <div class="lg:col-span-7">
@@ -88,8 +90,9 @@ const readout = [
     </section>
 
     <!-- ============ 02 · DIFERENCIADOR: INFRA + MEDIO AMBIENTE ============ -->
-    <section id="diferenciador" class="blueprint py-20 lg:py-28">
-      <div class="container-g2b">
+    <section id="diferenciador" class="relative overflow-hidden py-20 lg:py-28">
+      <FlowLines tone="light" />
+      <div class="container-g2b relative z-10">
         <div class="grid gap-12 lg:grid-cols-12 lg:gap-10">
           <div class="lg:col-span-5">
             <p class="flex items-center gap-3 text-sm font-bold uppercase tracking-wider text-water-600">
@@ -188,7 +191,8 @@ const readout = [
 
     <!-- ============ 04 · EL MODELO G2B (pieza estrella) ============ -->
     <section id="modelo" class="relative bg-wave py-20 text-white lg:py-28 overflow-hidden">
-      <div class="absolute inset-0 blueprint-dark opacity-60"></div>
+      <FlowLines tone="dark" />
+      <Monogram tone="dark" class="text-[24rem] -right-16 -bottom-28 hidden lg:block" />
       <div class="container-g2b relative z-10">
         <div class="max-w-2xl">
           <p class="flex items-center gap-3 text-sm font-bold uppercase tracking-wider text-water-400">
@@ -255,8 +259,9 @@ const readout = [
     </section>
 
     <!-- ============ 06 · EXPERIENCIA COMERCIAL ============ -->
-    <section id="experiencia" class="blueprint py-20 lg:py-28">
-      <div class="container-g2b">
+    <section id="experiencia" class="relative overflow-hidden py-20 lg:py-28">
+      <FlowLines tone="light" />
+      <div class="container-g2b relative z-10">
         <p class="flex items-center gap-3 text-sm font-bold uppercase tracking-wider text-water-600">
           <span class="sec-index">06</span><span class="h-px w-8 bg-water-600/40"></span>Experiencia comprobada
         </p>
@@ -348,7 +353,8 @@ const readout = [
 
     <!-- ============ 08 · CTA / CONTACTO ============ -->
     <section id="contacto" class="relative bg-wave py-20 text-white lg:py-28 overflow-hidden">
-      <div class="absolute inset-0 blueprint-dark opacity-60"></div>
+      <FlowLines tone="dark" />
+      <Monogram tone="dark" class="text-[24rem] -left-16 -bottom-32 hidden lg:block" />
       <div class="container-g2b relative z-10 grid gap-12 lg:grid-cols-2">
         <div>
           <p class="flex items-center gap-3 text-sm font-bold uppercase tracking-wider text-water-400">

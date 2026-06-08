@@ -147,21 +147,6 @@ h1, h2, h3, h4, .font-display {
   letter-spacing: 0.02em;
 }
 
-/* Rejilla técnica tipo plano — fondo claro */
-.blueprint {
-  background-image:
-    linear-gradient(rgba(10, 35, 91, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(10, 35, 91, 0.05) 1px, transparent 1px);
-  background-size: 38px 38px;
-}
-/* Rejilla técnica — sobre fondo navy (líneas claras) */
-.blueprint-dark {
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
-  background-size: 38px 38px;
-}
-
 /* Tratamiento duotono navy para fotografía de obra */
 .duotone {
   filter: grayscale(1) contrast(1.05);

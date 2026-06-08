@@ -1,0 +1,31 @@
+---
+// Líneas de corriente (motivo de agua en movimiento). Sutil, decorativo.
+interface Props {
+  tone?: "dark" | "light";
+  class?: string;
+}
+const { tone = "dark", class: cls = "" } = Astro.props;
+const stroke = tone === "dark" ? "var(--color-water-400)" : "var(--color-navy-800)";
+const opacity = tone === "dark" ? 0.13 : 0.05;
+
+const paths = [
+  "M-120 -60 C 380 180, 820 60, 1560 420",
+  "M-120 25 C 380 265, 820 145, 1560 505",
+  "M-120 110 C 380 350, 820 230, 1560 590",
+  "M-120 195 C 380 435, 820 315, 1560 675",
+  "M-120 280 C 380 520, 820 400, 1560 760",
+  "M-120 365 C 380 605, 820 485, 1560 845",
+  "M-120 450 C 380 690, 820 570, 1560 930",
+];
+---
+<svg
+  class={`pointer-events-none absolute inset-0 h-full w-full ${cls}`}
+  viewBox="0 0 1440 600"
+  preserveAspectRatio="xMidYMid slice"
+  fill="none"
+  aria-hidden="true"
+>
+  <g stroke={stroke} stroke-width="1.1" opacity={opacity}>
+    {paths.map((d) => <path d={d} />)}
+  </g>
+</svg>
