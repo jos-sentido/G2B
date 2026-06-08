@@ -1,0 +1,20 @@
+# dependencias
+node_modules/
+
+# build / cache
+dist/
+.astro/
+.vercel/
+
+# entorno
+.env
+.env.*
+!.env.example
+
+# sistema
+.DS_Store
+*.log
+npm-debug.log*
+
+# config local de herramientas
+.claude/

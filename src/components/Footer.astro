@@ -1,0 +1,59 @@
+---
+import { brand, solutions } from "../data/site";
+import Icon from "./Icon.astro";
+const year = new Date().getFullYear();
+---
+<footer class="bg-navy-950 text-steel-100">
+  <div class="container-g2b py-14 grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+    <div class="lg:col-span-1">
+      <img src="/img/logo-g2b-white.png" alt="G2B Constructora" class="h-12 w-auto mb-4" width="180" height="116" />
+      <p class="text-sm text-steel-300 leading-relaxed">{brand.concept}</p>
+      <p class="mt-4 text-xs text-steel-300/70">{brand.group}</p>
+    </div>
+
+    <div>
+      <h3 class="font-display font-semibold text-white mb-4 text-sm uppercase tracking-wider">Soluciones</h3>
+      <ul class="space-y-2.5 text-sm">
+        {solutions.map((s) => (
+          <li><a href={`#soluciones`} class="text-steel-300 hover:text-water-400 transition-colors">{s.title}</a></li>
+        ))}
+      </ul>
+    </div>
+
+    <div>
+      <h3 class="font-display font-semibold text-white mb-4 text-sm uppercase tracking-wider">Empresa</h3>
+      <ul class="space-y-2.5 text-sm">
+        <li><a href="#nosotros" class="text-steel-300 hover:text-water-400 transition-colors">Nosotros</a></li>
+        <li><a href="#modelo" class="text-steel-300 hover:text-water-400 transition-colors">El Modelo G2B</a></li>
+        <li><a href="#capacidad" class="text-steel-300 hover:text-water-400 transition-colors">Capacidad operativa</a></li>
+        <li><a href="#experiencia" class="text-steel-300 hover:text-water-400 transition-colors">Experiencia</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h3 class="font-display font-semibold text-white mb-4 text-sm uppercase tracking-wider">Contacto</h3>
+      <ul class="space-y-3 text-sm">
+        <li class="flex items-center gap-2.5 text-steel-300"><Icon name="phone" class="w-4 h-4 text-water-400 shrink-0" /><span>{brand.contact.phone || "Teléfono — pendiente"}</span></li>
+        <li class="flex items-center gap-2.5 text-steel-300"><Icon name="mail" class="w-4 h-4 text-water-400 shrink-0" /><span>{brand.contact.email || "Correo — pendiente"}</span></li>
+        <li class="flex items-center gap-2.5 text-steel-300"><Icon name="pin" class="w-4 h-4 text-water-400 shrink-0" /><span>{brand.contact.address || "Dirección — pendiente"}</span></li>
+      </ul>
+      <a href="#contacto" class="mt-5 inline-flex items-center gap-2 rounded-lg bg-water-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-water-500 transition-colors">
+        Solicitar propuesta <Icon name="arrow" class="w-4 h-4" />
+      </a>
+    </div>
+  </div>
+
+  <div class="border-t border-white/10">
+    <div class="container-g2b py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-steel-300/70">
+      <p>© {year} {brand.name}. Todos los derechos reservados.</p>
+      <p class="flex items-center gap-2">
+        {brand.pillars.map((p, i) => (
+          <>
+            {i > 0 && <span class="text-water-400">·</span>}
+            <span>{p}</span>
+          </>
+        ))}
+      </p>
+    </div>
+  </div>
+</footer>

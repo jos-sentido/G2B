@@ -1,0 +1,63 @@
+---
+import "../styles/global.css";
+import { brand } from "../data/site";
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+}
+
+const {
+  title = `${brand.name} | Infraestructura hidráulica y tratamiento de agua en México`,
+  description = "G2B Constructora: diseño, construcción, rehabilitación y operación de infraestructura hidráulica, PTAR, protección hidráulica, redes sanitarias y pavimentación. +$943M MXN ejecutados en obra pública y privada.",
+  image = "/img/logo-g2b.png",
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+---
+
+<!doctype html>
+<html lang="es-MX">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/img/logo-g2b.png" />
+    <link rel="canonical" href={canonical} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0a235b" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta property="og:locale" content="es_MX" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Archivo:wght@600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Datos estructurados: organización constructora -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "GeneralContractor",
+      name: brand.name,
+      legalName: brand.group,
+      slogan: brand.concept,
+      areaServed: "MX",
+      url: Astro.site,
+      description: description,
+    })} />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

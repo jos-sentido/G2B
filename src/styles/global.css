@@ -1,0 +1,200 @@
+@import "tailwindcss";
+
+/* ============================================================
+   G2B CONSTRUCTORA — Sistema de marca
+   Colores extraídos del CV Corporativo 2026 (valores reales).
+   ============================================================ */
+@theme {
+  /* Marca primaria — navy profundo del logo */
+  --color-navy-950: #050f33;
+  --color-navy-900: #081a4a;
+  --color-navy-800: #0a235b;
+  --color-navy-700: #0f2f74;
+  --color-navy-600: #14387a;
+  --color-navy-500: #1d4ed8;
+
+  /* Secundario — gris acero (el "2" y las barras del logo) */
+  --color-steel-700: #5c5e63;
+  --color-steel-600: #6a6c72; /* texto secundario accesible — 5.2:1 sobre blanco (AA) */
+  --color-steel-500: #838488; /* solo decorativo/bordes — NO usar en texto sobre blanco */
+  --color-steel-300: #b9bcc2;
+  --color-steel-100: #e8ecf5;
+
+  /* Acento agua — para el eje hídrico/ambiental */
+  --color-water-600: #0c7bb3;
+  --color-water-500: #1693c9;
+  --color-water-400: #38b6e0;
+  --color-water-200: #b6e4f3;
+
+  /* Acento ambiental (restauración / plántulas / ESG) */
+  --color-eco-600: #2e8b57;
+  --color-eco-500: #3aa46a;
+
+  /* Neutros / fondo */
+  --color-paper: #f7f8fc;
+  --color-ink: #0c1430;
+
+  /* Tipografía */
+  --font-display: "Sora", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono-num: "Archivo", ui-sans-serif, system-ui, sans-serif; /* cifras industriales */
+
+  /* Radios / sombras de marca */
+  --radius-brand: 0.75rem;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Accesibilidad — anillo de foco visible y consistente para teclado */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid var(--color-water-500);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Respeta la preferencia del sistema de reducir movimiento */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .reveal { animation: none !important; }
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-ink);
+  background: #ffffff;
+}
+
+h1, h2, h3, h4, .font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}
+
+/* Utilidades de marca */
+.container-g2b {
+  width: 100%;
+  max-width: 80rem;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+@media (min-width: 1024px) {
+  .container-g2b { padding-inline: 2rem; }
+}
+
+/* Patrón sutil de "agua" / ondas para fondos navy */
+.bg-wave {
+  background-image:
+    radial-gradient(ellipse 80% 60% at 20% -10%, rgba(56,182,224,0.18), transparent 60%),
+    radial-gradient(ellipse 70% 50% at 90% 10%, rgba(20,56,122,0.55), transparent 60%),
+    linear-gradient(160deg, var(--color-navy-900) 0%, var(--color-navy-800) 45%, var(--color-navy-700) 100%);
+}
+
+/* Slot de imagen pendiente del cliente */
+.media-slot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: 1px dashed var(--color-steel-300);
+  background:
+    repeating-linear-gradient(45deg, rgba(131,132,136,0.05) 0 12px, transparent 12px 24px);
+  color: var(--color-steel-600);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* Animación contadores / reveal */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.reveal { animation: fade-up 0.7s ease both; }
+
+/* ============================================================
+   DIRECCIÓN DE ARTE — "plano de ingeniería + agua"
+   ============================================================ */
+
+/* Cifra protagonista (Archivo, tabular, tracking negativo) */
+.stat-mega {
+  font-family: var(--font-mono-num);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.03em;
+  line-height: 0.92;
+}
+
+/* Numeración editorial de sección (01 / 02 ...) */
+.sec-index {
+  font-family: var(--font-mono-num);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+
+/* Rejilla técnica tipo plano — fondo claro */
+.blueprint {
+  background-image:
+    linear-gradient(rgba(10, 35, 91, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(10, 35, 91, 0.05) 1px, transparent 1px);
+  background-size: 38px 38px;
+}
+/* Rejilla técnica — sobre fondo navy (líneas claras) */
+.blueprint-dark {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 38px 38px;
+}
+
+/* Tratamiento duotono navy para fotografía de obra */
+.duotone {
+  filter: grayscale(1) contrast(1.05);
+  background: linear-gradient(160deg, var(--color-navy-800), var(--color-water-600));
+  background-blend-mode: luminosity;
+}
+
+/* Línea/onda de agua animada (se dibuja con stroke-dashoffset) */
+.water-draw {
+  stroke-dasharray: var(--len, 2000);
+  stroke-dashoffset: var(--len, 2000);
+  transition: stroke-dashoffset 1.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.water-draw.is-in { stroke-dashoffset: 0; }
+
+/* Reveal al hacer scroll (stagger por --d) */
+.r-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  transition-delay: var(--d, 0ms);
+}
+.r-in.is-in { opacity: 1; transform: none; }
+
+/* Pulso sutil para métricas clave */
+@keyframes metric-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(22, 147, 201, 0); }
+  50% { box-shadow: 0 0 0 6px rgba(22, 147, 201, 0.12); }
+}
+.metric-pulse { animation: metric-pulse 3s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .water-draw { transition: none; stroke-dashoffset: 0; }
+  .r-in { opacity: 1; transform: none; transition: none; }
+  .metric-pulse { animation: none; }
+}
