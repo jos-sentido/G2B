@@ -1,0 +1,372 @@
+---
+import Base from "../layouts/Base.astro";
+import Footer from "../components/Footer.astro";
+import Icon from "../components/Icon.astro";
+import AuroraBg from "../components/AuroraBg.astro";
+import { brand, solutions, modelo, capacity, experience, audiences } from "../data/site";
+
+const totalCapacity = Object.values(capacity).flat().reduce((a, b) => a + b.qty, 0);
+const fmtM = (n: number) => "$" + (n / 1_000_000).toLocaleString("es-MX", { maximumFractionDigits: 1 }) + "M";
+const maxType = Math.max(...experience.byType.map((t) => t.amount));
+
+const nav = [
+  { label: "Soluciones", href: "#soluciones" },
+  { label: "Modelo G2B", href: "#modelo" },
+  { label: "Capacidad", href: "#capacidad" },
+  { label: "Experiencia", href: "#experiencia" },
+];
+const ticker = ["$943M ejecutados", "170,000+ plántulas", `${totalCapacity}+ equipos propios`, "NOM-001 · 002 · 003", "Cobertura nacional", "PTAR · Tecnología MoMo"];
+---
+
+<Base title={`${brand.name} | Infraestructura que transforma`}>
+  <div class="page">
+    <!-- ===== HEADER transparente ===== -->
+    <header class="hdr">
+      <div class="container-g2b flex h-20 items-center justify-between">
+        <a href="#top" aria-label="G2B Constructora"><img src="/img/logo-g2b-white.png" alt="G2B Constructora" width="160" height="103" class="h-10 w-auto" /></a>
+        <nav class="hidden items-center gap-8 lg:flex" aria-label="Principal">
+          {nav.map((i) => <a href={i.href} class="text-sm font-medium text-white/70 transition-colors hover:text-cyan">{i.label}</a>)}
+        </nav>
+        <a href="#contacto" class="btn-glow text-sm">Solicitar propuesta <Icon name="arrow" class="h-4 w-4" /></a>
+      </div>
+    </header>
+
+    <main id="top">
+      <!-- ===== HERO inmersivo ===== -->
+      <section class="hero">
+        <AuroraBg />
+        <div class="container-g2b hero-inner">
+          <p class="kicker reveal">Infraestructura estratégica · Cobertura nacional</p>
+          <h1 class="hero-title">
+            <span class="reveal" style="--d:60ms">Infraestructura</span>
+            <span class="reveal" style="--d:160ms">que <em>conecta</em>,</span>
+            <span class="reveal" style="--d:260ms">agua que <em>transforma</em>.</span>
+          </h1>
+          <p class="hero-sub reveal" style="--d:380ms">
+            Diseñamos, construimos y operamos infraestructura hidráulica de alto impacto —
+            integrando ingeniería, sustentabilidad y restauración ambiental.
+          </p>
+          <div class="hero-cta reveal" style="--d:480ms">
+            <a href="#contacto" class="btn-glow">Solicitar propuesta <Icon name="arrow" class="h-4 w-4" /></a>
+            <a href="#soluciones" class="btn-ghost">Ver soluciones</a>
+          </div>
+        </div>
+
+        <!-- Ticker de métricas -->
+        <div class="ticker">
+          <div class="ticker-track">
+            {[...ticker, ...ticker].map((t) => (
+              <span class="ticker-item"><span class="dot"></span>{t}</span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== DIFERENCIADOR ===== -->
+      <section class="band">
+        <div class="container-g2b grid items-center gap-12 lg:grid-cols-2">
+          <div>
+            <span class="eyebrow">Diferenciador</span>
+            <h2 class="h-big">No solo construimos obra.<br /><em>Regeneramos</em> el territorio.</h2>
+            <p class="lead">A diferencia de una constructora tradicional, G2B combina capacidad de ejecución con un compromiso real con el agua: cada proyecto integra infraestructura, sustentabilidad, restauración ambiental y desarrollo territorial.</p>
+          </div>
+          <div class="glass glow-card">
+            <p class="mega-num glow-text">+170,000</p>
+            <p class="mt-2 text-lg font-semibold text-white">plántulas entregadas</p>
+            <p class="text-sm text-white/55">de especies nativas y endémicas</p>
+            <div class="mt-7 grid grid-cols-3 gap-4 border-t border-white/10 pt-6 text-center">
+              <div><p class="font-display text-sm font-bold text-cyan">NOM 001·002·003</p><p class="mt-1 text-xs text-white/50">Normatividad</p></div>
+              <div><p class="font-display text-sm font-bold text-cyan">ESG</p><p class="mt-1 text-xs text-white/50">Estándares</p></div>
+              <div><p class="font-display text-sm font-bold text-cyan">Cuencas</p><p class="mt-1 text-xs text-white/50">Protegidas</p></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== SOLUCIONES (filas editoriales) ===== -->
+      <section id="soluciones" class="band">
+        <div class="container-g2b">
+          <span class="eyebrow">Soluciones</span>
+          <h2 class="h-big mb-12">Cinco líneas, una infraestructura integral del agua</h2>
+          <div class="sol-list">
+            {solutions.map((s, i) => (
+              <a href="#contacto" class={`sol-row ${s.featured ? "is-featured" : ""}`}>
+                <span class="sol-n">{String(i + 1).padStart(2, "0")}</span>
+                <span class="sol-ico"><Icon name={s.icon} class="h-7 w-7" /></span>
+                <span class="sol-body">
+                  <span class="sol-title">{s.title}{s.featured && <em class="sol-tag">Servicio estrella</em>}</span>
+                  <span class="sol-desc">{s.short}</span>
+                </span>
+                <Icon name="arrow" class="sol-arrow h-6 w-6" />
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== MODELO G2B (timeline vertical con línea que se llena) ===== -->
+      <section id="modelo" class="band band-deep">
+        <AuroraBg class="opacity-60" />
+        <div class="container-g2b relative z-10">
+          <span class="eyebrow">El Modelo G2B</span>
+          <h2 class="h-big">De una gota de agua<br />a una comunidad que crece</h2>
+          <p class="lead max-w-2xl">Un modelo propio de restauración hídrica y desarrollo territorial: cómo un proyecto hidráulico genera impacto económico, social y ambiental.</p>
+
+          <div class="timeline">
+            <div class="tl-line"><span class="tl-fill"></span></div>
+            {modelo.map((m) => (
+              <div class="tl-step reveal">
+                <div class="tl-node glow-text">{m.n}</div>
+                <div class="tl-card glass">
+                  <h3 class="font-display text-xl font-bold text-white">{m.title}</h3>
+                  <p class="mt-2 text-sm leading-relaxed text-white/65">{m.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <p class="mt-12 font-display text-xl font-semibold text-cyan">{brand.taglines.primary}</p>
+        </div>
+      </section>
+
+      <!-- ===== CAPACIDAD ===== -->
+      <section id="capacidad" class="band">
+        <div class="container-g2b">
+          <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+            <div><span class="eyebrow">Capacidad operativa</span><h2 class="h-big">Flota propia, lista para cualquier reto</h2></div>
+            <p class="mega-num glow-text shrink-0">{totalCapacity}+</p>
+          </div>
+          <div class="mt-10 grid gap-5 sm:grid-cols-3">
+            {Object.entries(capacity).map(([group, items]) => (
+              <div class="glass p-7">
+                <h3 class="border-b border-white/10 pb-3 text-xs font-bold uppercase tracking-wider text-cyan">{group}</h3>
+                <ul class="mt-2 divide-y divide-white/5">
+                  {items.map((it) => (
+                    <li class="flex items-center justify-between py-2.5">
+                      <span class="text-sm text-white/70">{it.item}</span>
+                      <span class="font-display text-lg font-extrabold text-white">{it.qty}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== EXPERIENCIA ===== -->
+      <section id="experiencia" class="band band-deep">
+        <div class="container-g2b relative z-10">
+          <span class="eyebrow">Experiencia comprobada</span>
+          <h2 class="h-big">Casi mil millones de pesos<br />en obra ejecutada</h2>
+          <p class="mega-num glow-text mt-6">
+            <span class="counter" data-target="943" data-prefix="$" data-suffix="M">$0M</span>
+            <span class="text-2xl font-bold text-white/60"> MXN</span>
+          </p>
+          <div class="mt-12 grid gap-10 lg:grid-cols-2">
+            <div class="space-y-5">
+              {experience.byType.map((t) => (
+                <div>
+                  <div class="flex items-baseline justify-between gap-3">
+                    <span class="text-sm font-medium text-white/85">{t.label}</span>
+                    <span class="font-display text-sm font-bold text-cyan">{fmtM(t.amount)}</span>
+                  </div>
+                  <div class="bar"><span class="bar-fill" style={`width:${(t.amount / maxType * 100).toFixed(1)}%`}></span></div>
+                </div>
+              ))}
+            </div>
+            <div class="grid grid-cols-2 gap-5">
+              {experience.bySector.map((sec) => (
+                <div class="glass flex flex-col justify-center p-7">
+                  <p class="font-display text-3xl font-extrabold text-white">{fmtM(sec.amount)}</p>
+                  <p class="mt-1 text-sm text-white/60">{sec.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== AUDIENCIAS ===== -->
+      <section id="nosotros" class="band">
+        <div class="container-g2b">
+          <span class="eyebrow">Para quién trabajamos</span>
+          <h2 class="h-big mb-10">Aliados del sector público y privado</h2>
+          <div class="grid gap-6 md:grid-cols-2">
+            <div class="glass p-8">
+              <div class="flex items-center gap-3"><Icon name="gov" class="h-7 w-7 text-cyan" /><h3 class="font-display text-xl font-bold text-white">Gobierno</h3></div>
+              <div class="mt-5 flex flex-wrap gap-2">{audiences.gobierno.map((a) => <span class="chip">{a}</span>)}</div>
+            </div>
+            <div class="glass p-8">
+              <div class="flex items-center gap-3"><Icon name="building" class="h-7 w-7 text-cyan" /><h3 class="font-display text-xl font-bold text-white">Sector privado</h3></div>
+              <div class="mt-5 flex flex-wrap gap-2">{audiences.privado.map((a) => <span class="chip">{a}</span>)}</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== CONTACTO ===== -->
+      <section id="contacto" class="band band-deep">
+        <AuroraBg class="opacity-50" />
+        <div class="container-g2b relative z-10 grid gap-12 lg:grid-cols-2">
+          <div>
+            <span class="eyebrow">Contacto</span>
+            <h2 class="h-big">Construyamos juntos<br />el siguiente proyecto</h2>
+            <p class="lead max-w-md">{brand.taglines.team}</p>
+            <ul class="mt-8 space-y-4 text-white/80">
+              <li class="flex items-center gap-3"><Icon name="phone" class="h-5 w-5 text-cyan" />{brand.contact.phone || "Teléfono — pendiente del cliente"}</li>
+              <li class="flex items-center gap-3"><Icon name="mail" class="h-5 w-5 text-cyan" />{brand.contact.email || "Correo — pendiente del cliente"}</li>
+              <li class="flex items-center gap-3"><Icon name="whatsapp" class="h-5 w-5 text-cyan" />{brand.contact.whatsapp || "WhatsApp — pendiente del cliente"}</li>
+            </ul>
+          </div>
+          <form class="glass p-7 lg:p-8" onsubmit="event.preventDefault(); this.querySelector('#fm').classList.remove('hidden');">
+            <div class="grid gap-4 sm:grid-cols-2">
+              <label class="fld"><span>Nombre</span><input type="text" required autocomplete="name" /></label>
+              <label class="fld"><span>Empresa / Dependencia</span><input type="text" autocomplete="organization" /></label>
+              <label class="fld"><span>Correo</span><input type="email" required autocomplete="email" /></label>
+              <label class="fld"><span>Teléfono</span><input type="tel" autocomplete="tel" /></label>
+            </div>
+            <label class="fld mt-4 block"><span>Solución de interés</span>
+              <select>{solutions.map((s) => <option>{s.title}</option>)}</select>
+            </label>
+            <label class="fld mt-4 block"><span>Mensaje</span><textarea rows="3"></textarea></label>
+            <button type="submit" class="btn-glow mt-5 w-full justify-center">Enviar solicitud <Icon name="arrow" class="h-4 w-4" /></button>
+            <p id="fm" role="status" aria-live="polite" class="hidden mt-3 text-center text-sm font-medium text-eco-500">¡Gracias! (Demo — falta conectar el envío.)</p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <Footer />
+  </div>
+
+  <script>
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const fmt = (n: number) => n.toLocaleString("es-MX");
+    const animate = (el: HTMLElement) => {
+      const target = Number(el.dataset.target || "0"), prefix = el.dataset.prefix || "", suffix = el.dataset.suffix || "";
+      if (reduce) { el.textContent = prefix + fmt(target) + suffix; return; }
+      const dur = 1600, start = performance.now();
+      const step = (t: number) => { const p = Math.min((t - start) / dur, 1); const e = 1 - Math.pow(1 - p, 3);
+        el.textContent = prefix + fmt(Math.floor(e * target)) + suffix; if (p < 1) requestAnimationFrame(step); else el.textContent = prefix + fmt(target) + suffix; };
+      requestAnimationFrame(step);
+    };
+    const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { const t = e.target as HTMLElement;
+      if (t.classList.contains("counter")) animate(t); t.classList.add("is-in"); io.unobserve(t); } }), { threshold: 0.3 });
+    document.querySelectorAll(".counter, .reveal, .tl-fill, .bar-fill").forEach((el) => io.observe(el));
+  </script>
+
+  <style is:global>
+    body { background: #050b1f; color: #fff; }
+  </style>
+
+  <style>
+    .page { background: #050b1f; }
+    .text-cyan { color: #38b6e0; }
+
+    /* Header */
+    .hdr { position: absolute; top: 0; left: 0; right: 0; z-index: 50; }
+    .btn-glow { display: inline-flex; align-items: center; gap: 0.5rem; border-radius: 0.6rem;
+      background: linear-gradient(135deg, #1693c9, #38b6e0); color: #04101f; font-weight: 700;
+      padding: 0.7rem 1.3rem; box-shadow: 0 8px 30px rgba(56,182,224,0.35); transition: transform .2s, box-shadow .2s; }
+    .btn-glow:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(56,182,224,0.5); }
+    .btn-ghost { display: inline-flex; align-items: center; border-radius: 0.6rem; border: 1px solid rgba(255,255,255,0.25);
+      color: #fff; font-weight: 600; padding: 0.7rem 1.4rem; transition: background .2s; }
+    .btn-ghost:hover { background: rgba(255,255,255,0.08); }
+
+    /* Hero */
+    .hero { position: relative; min-height: 100svh; display: flex; flex-direction: column; justify-content: center; overflow: hidden; }
+    .hero-inner { position: relative; z-index: 10; padding-block: 8rem 6rem; }
+    .kicker { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: #7fd6f0; }
+    .hero-title { margin-top: 1.5rem; font-family: var(--font-display); font-weight: 800; line-height: 0.98;
+      letter-spacing: -0.03em; font-size: clamp(2.8rem, 9vw, 7rem); }
+    .hero-title span { display: block; }
+    .hero-title em { font-style: normal; color: #38b6e0; text-shadow: 0 0 50px rgba(56,182,224,0.55); }
+    .hero-sub { margin-top: 1.8rem; max-width: 38rem; font-size: 1.15rem; line-height: 1.6; color: rgba(255,255,255,0.72); }
+    .hero-cta { margin-top: 2.3rem; display: flex; flex-wrap: wrap; gap: 1rem; }
+
+    /* Ticker */
+    .ticker { position: relative; z-index: 10; border-top: 1px solid rgba(255,255,255,0.1);
+      border-bottom: 1px solid rgba(255,255,255,0.1); padding-block: 1rem; overflow: hidden;
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+    .ticker-track { display: inline-flex; gap: 3rem; white-space: nowrap; animation: scroll-x 32s linear infinite; }
+    .ticker-item { display: inline-flex; align-items: center; gap: 0.8rem; font-family: var(--font-display);
+      font-weight: 700; font-size: 0.95rem; color: rgba(255,255,255,0.8); }
+    .ticker-item .dot { width: 7px; height: 7px; border-radius: 50%; background: #38b6e0; box-shadow: 0 0 12px #38b6e0; }
+    @keyframes scroll-x { to { transform: translateX(-50%); } }
+
+    /* Bands */
+    .band { position: relative; padding-block: 6rem; overflow: hidden; }
+    @media (min-width:1024px){ .band { padding-block: 8rem; } }
+    .band-deep { background: linear-gradient(180deg, #040a1a, #06112a); }
+    .eyebrow { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #38b6e0; }
+    .h-big { margin-top: 0.9rem; font-family: var(--font-display); font-weight: 800; letter-spacing: -0.02em;
+      line-height: 1.04; font-size: clamp(2rem, 4.5vw, 3.4rem); color: #fff; }
+    .h-big em { font-style: normal; color: #38b6e0; }
+    .lead { margin-top: 1.3rem; font-size: 1.1rem; line-height: 1.65; color: rgba(255,255,255,0.66); }
+    .mega-num { font-family: var(--font-mono-num); font-weight: 800; font-variant-numeric: tabular-nums;
+      letter-spacing: -0.03em; line-height: 0.9; font-size: clamp(3.5rem, 8vw, 6rem); color: #fff; }
+    .glow-text { text-shadow: 0 0 45px rgba(56,182,224,0.5); }
+
+    /* Glass */
+    .glass { border-radius: 1rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+      backdrop-filter: blur(14px); }
+    .glow-card { padding: 2.2rem; box-shadow: 0 0 80px rgba(56,182,224,0.12) inset; }
+
+    /* Soluciones rows */
+    .sol-list { border-top: 1px solid rgba(255,255,255,0.1); }
+    .sol-row { display: grid; grid-template-columns: auto auto 1fr auto; align-items: center; gap: 1.5rem;
+      padding: 1.6rem 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); transition: padding .3s, background .3s; }
+    .sol-row:hover { padding-left: 1.5rem; background: linear-gradient(90deg, rgba(56,182,224,0.08), transparent); }
+    .sol-n { font-family: var(--font-mono-num); font-weight: 800; font-size: 1.1rem; color: rgba(255,255,255,0.3); }
+    .sol-ico { display: flex; height: 3rem; width: 3rem; align-items: center; justify-content: center;
+      border-radius: 0.7rem; background: rgba(56,182,224,0.12); color: #38b6e0; }
+    .sol-title { font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; color: #fff; display:flex; align-items:center; gap:.8rem; flex-wrap:wrap; }
+    .sol-tag { font-style: normal; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+      background: #1693c9; color: #04101f; padding: 0.2rem 0.6rem; border-radius: 999px; }
+    .sol-desc { display: block; margin-top: 0.3rem; font-size: 0.95rem; color: rgba(255,255,255,0.6); }
+    .sol-arrow { color: rgba(255,255,255,0.35); transition: transform .3s, color .3s; }
+    .sol-row:hover .sol-arrow { transform: translateX(8px); color: #38b6e0; }
+    @media (max-width: 640px){ .sol-row { grid-template-columns: auto 1fr; } .sol-ico, .sol-arrow { display:none; } .sol-title{font-size:1.2rem;} }
+
+    /* Timeline */
+    .timeline { position: relative; margin-top: 3.5rem; display: grid; gap: 2rem; padding-left: 3.5rem; }
+    .tl-line { position: absolute; left: 1.35rem; top: 0.5rem; bottom: 0.5rem; width: 2px; background: rgba(255,255,255,0.12); }
+    .tl-fill { position: absolute; inset: 0 0 auto 0; width: 100%; height: 0; background: linear-gradient(#38b6e0, #3aa46a);
+      box-shadow: 0 0 14px rgba(56,182,224,0.6); transition: height 1.6s ease; }
+    .tl-fill.is-in { height: 100%; }
+    .tl-step { position: relative; display: grid; grid-template-columns: 1fr; }
+    .tl-node { position: absolute; left: -3.5rem; top: 0; display: flex; height: 2.7rem; width: 2.7rem;
+      align-items: center; justify-content: center; border-radius: 50%; border: 2px solid #38b6e0;
+      background: #050b1f; font-family: var(--font-mono-num); font-weight: 800; color: #38b6e0; }
+    .tl-card { padding: 1.4rem 1.6rem; }
+
+    /* Bars */
+    .bar { margin-top: 0.5rem; height: 0.6rem; border-radius: 999px; background: rgba(255,255,255,0.08); overflow: hidden; }
+    .bar-fill { display: block; height: 100%; width: 0; border-radius: 999px;
+      background: linear-gradient(90deg, #1693c9, #38b6e0); transition: width 1.4s ease; }
+
+    /* Chips & form */
+    .chip { border-radius: 999px; border: 1px solid rgba(255,255,255,0.14); background: rgba(255,255,255,0.04);
+      padding: 0.4rem 0.9rem; font-size: 0.85rem; font-weight: 500; color: rgba(255,255,255,0.85); }
+    .fld span { font-size: 0.8rem; font-weight: 600; color: rgba(255,255,255,0.7); }
+    .fld input, .fld select, .fld textarea { margin-top: 0.3rem; width: 100%; border-radius: 0.55rem;
+      border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.04); color: #fff;
+      padding: 0.65rem 0.85rem; font-size: 0.9rem; outline: none; }
+    .fld input:focus, .fld select:focus, .fld textarea:focus { border-color: #38b6e0; box-shadow: 0 0 0 3px rgba(56,182,224,0.2); }
+    .fld select option { color: #04101f; }
+
+    /* Reveal */
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; transition-delay: var(--d, 0ms); }
+    .reveal.is-in, .hero .reveal { } /* hero reveals handled below */
+    .is-in { opacity: 1 !important; transform: none !important; }
+    .hero .reveal { animation: heroUp .8s ease both; animation-delay: var(--d, 0ms); opacity: 1; transform: none; }
+    @keyframes heroUp { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
+
+    @media (prefers-reduced-motion: reduce) {
+      .ticker-track { animation: none; }
+      .reveal, .hero .reveal { opacity: 1 !important; transform: none !important; animation: none !important; }
+      .tl-fill { transition: none; height: 100%; }
+      .bar-fill { transition: none; }
+    }
+  </style>
+</Base>

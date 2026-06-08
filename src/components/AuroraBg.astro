@@ -1,0 +1,50 @@
+---
+// Fondo inmersivo: "aurora de agua" — blobs de luz que derivan + onda inferior.
+interface Props { class?: string; }
+const { class: cls = "" } = Astro.props;
+---
+<div class={`aurora pointer-events-none absolute inset-0 overflow-hidden ${cls}`} aria-hidden="true">
+  <span class="blob b1"></span>
+  <span class="blob b2"></span>
+  <span class="blob b3"></span>
+  <div class="grain"></div>
+</div>
+
+<style>
+  .aurora { z-index: 0; }
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(90px);
+    opacity: 0.55;
+    will-change: transform;
+  }
+  .b1 {
+    width: 46vw; height: 46vw; left: -8vw; top: -12vw;
+    background: radial-gradient(circle, rgba(56,182,224,0.9), transparent 68%);
+    animation: drift1 22s ease-in-out infinite;
+  }
+  .b2 {
+    width: 40vw; height: 40vw; right: -6vw; top: 4vw;
+    background: radial-gradient(circle, rgba(58,164,106,0.55), transparent 68%);
+    animation: drift2 27s ease-in-out infinite;
+  }
+  .b3 {
+    width: 52vw; height: 52vw; left: 28vw; bottom: -28vw;
+    background: radial-gradient(circle, rgba(20,56,122,0.95), transparent 70%);
+    animation: drift3 31s ease-in-out infinite;
+  }
+  .grain {
+    position: absolute; inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 3px 3px;
+    mix-blend-mode: overlay;
+  }
+  @keyframes drift1 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(8vw,6vw) scale(1.12)} }
+  @keyframes drift2 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(-7vw,5vw) scale(1.08)} }
+  @keyframes drift3 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(-6vw,-7vw) scale(1.15)} }
+
+  @media (prefers-reduced-motion: reduce) {
+    .blob { animation: none !important; }
+  }
+</style>
