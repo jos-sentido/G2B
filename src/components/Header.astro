@@ -17,7 +17,7 @@ const nav = [
 
     <nav class="hidden lg:flex items-center gap-8" aria-label="Principal">
       {nav.map((i) => (
-        <a href={i.href} class="py-2 text-sm font-medium text-navy-900/80 hover:text-water-600 transition-colors">{i.label}</a>
+        <a href={i.href} class="py-2 text-sm font-medium text-navy-900/80 hover:text-water-600 transition-colors aria-[current]:text-water-600 aria-[current]:font-semibold">{i.label}</a>
       ))}
     </nav>
 
@@ -58,4 +58,20 @@ const nav = [
   const onScroll = () => header?.classList.toggle("shadow-lg", window.scrollY > 8);
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
+
+  // scroll-spy — resalta la sección activa en el nav
+  const sections = document.querySelectorAll("main section[id]");
+  const navLinks = document.querySelectorAll<HTMLAnchorElement>("nav a[href^='#']");
+  const spy = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        navLinks.forEach((a) => a.removeAttribute("aria-current"));
+        const active = document.querySelector<HTMLAnchorElement>(`nav a[href="#${e.target.id}"]`);
+        active?.setAttribute("aria-current", "true");
+      });
+    },
+    { threshold: 0.35 }
+  );
+  sections.forEach((s) => spy.observe(s));
 </script>
