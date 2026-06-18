@@ -170,30 +170,20 @@ const readout = [
           <p class="mt-4 text-lg text-steel-100/90">Un modelo que combina planeación, ingeniería, suministro, fabricación, construcción, logística y operación — con ejecución simultánea de múltiples frentes de obra.</p>
         </div>
 
-        <div class="relative mt-16">
-          <svg class="absolute left-0 top-7 hidden w-full lg:block" height="60" viewBox="0 0 1200 60" fill="none" preserveAspectRatio="none" aria-hidden="true">
-            <path class="water-draw" style="--len:1" pathLength="1" d="M40 30 C 200 0, 320 60, 500 30 S 820 0, 1000 30 1160 30 1160 30" stroke="var(--color-water-400)" stroke-width="2.5" />
-          </svg>
-          <ol class="grid gap-10 sm:grid-cols-2 lg:grid-cols-6 lg:gap-5">
-            {integralModel.map((m, i) => (
-              <li class="r-in relative pt-2" style={`--d:${i * 120 + 150}ms`}>
-                <!-- número grande editorial de fondo -->
-                <span
-                  class="pointer-events-none absolute -left-1 -top-3 select-none font-display font-extrabold leading-none stat-mega text-water-400"
-                  style="font-size:4.5rem; opacity:0.13"
-                  aria-hidden="true"
-                >{m.n}</span>
-                <!-- etiqueta del paso con línea -->
-                <div class="relative mb-4 flex items-center gap-2 mt-1">
-                  <span class="sec-index text-[10px] font-bold uppercase tracking-[0.2em] text-water-400">0{m.n}</span>
-                  <span class="h-px flex-1 bg-water-400/25"></span>
-                </div>
-                <h3 class="relative font-display text-[0.95rem] font-bold leading-tight">{m.title}</h3>
-                <p class="relative mt-2 text-sm leading-relaxed text-steel-100/80">{m.desc}</p>
-              </li>
-            ))}
-          </ol>
-        </div>
+        <ol class="mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-6 lg:gap-5">
+          {integralModel.map((m, i) => (
+            <li class="r-in relative pt-8" style={`--d:${i * 120 + 150}ms`}>
+              <!-- número grande editorial — única numeración -->
+              <span
+                class="pointer-events-none absolute left-0 top-0 select-none font-display font-extrabold leading-none stat-mega text-water-400"
+                style="font-size:4.5rem; opacity:0.15"
+                aria-hidden="true"
+              >{m.n}</span>
+              <h3 class="relative font-display text-[0.95rem] font-bold leading-tight">{m.title}</h3>
+              <p class="relative mt-2 text-sm leading-relaxed text-steel-100/80">{m.desc}</p>
+            </li>
+          ))}
+        </ol>
         <p class="mt-14 font-display text-xl font-semibold text-water-200">{brand.taglines.team}</p>
       </div>
     </section>
