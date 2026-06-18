@@ -1,21 +1,21 @@
 ---
-import { brand, solutions } from "../data/site";
+import { brand, companies } from "../data/site";
 import Icon from "./Icon.astro";
 const year = new Date().getFullYear();
 ---
 <footer class="bg-navy-950 text-steel-100">
   <div class="container-g2b py-14 grid gap-10 md:grid-cols-2 lg:grid-cols-4">
     <div class="lg:col-span-1">
-      <img src="/img/logo-g2b-white.png" alt="G2B Constructora" class="h-12 w-auto mb-4" width="180" height="116" />
+      <img src="/img/logo-g2b-white.png" alt="Grupo Constructor G2B" class="h-14 w-auto mb-4" width="150" height="115" />
       <p class="text-sm text-steel-300 leading-relaxed">{brand.concept}</p>
       <p class="mt-4 text-xs text-steel-300/70">{brand.group}</p>
     </div>
 
     <div>
-      <h3 class="font-display font-semibold text-white mb-4 text-sm uppercase tracking-wider">Soluciones</h3>
+      <h3 class="font-display font-semibold text-white mb-4 text-sm uppercase tracking-wider">Nuestras empresas</h3>
       <ul class="space-y-2.5 text-sm">
-        {solutions.map((s) => (
-          <li><a href={`#soluciones`} class="text-steel-300 hover:text-water-400 transition-colors">{s.title}</a></li>
+        {companies.map((c) => (
+          <li><a href={`#empresas`} class="text-steel-300 hover:text-water-400 transition-colors">{c.name} — {c.specialty}</a></li>
         ))}
       </ul>
     </div>
@@ -23,8 +23,8 @@ const year = new Date().getFullYear();
     <div>
       <h3 class="font-display font-semibold text-white mb-4 text-sm uppercase tracking-wider">Empresa</h3>
       <ul class="space-y-2.5 text-sm">
-        <li><a href="#nosotros" class="text-steel-300 hover:text-water-400 transition-colors">Nosotros</a></li>
-        <li><a href="#modelo" class="text-steel-300 hover:text-water-400 transition-colors">El Modelo G2B</a></li>
+        <li><a href="#modelo" class="text-steel-300 hover:text-water-400 transition-colors">Modelo integral</a></li>
+        <li><a href="#especialidad" class="text-steel-300 hover:text-water-400 transition-colors">Áreas de especialidad</a></li>
         <li><a href="#capacidad" class="text-steel-300 hover:text-water-400 transition-colors">Capacidad operativa</a></li>
         <li><a href="#experiencia" class="text-steel-300 hover:text-water-400 transition-colors">Experiencia</a></li>
       </ul>
