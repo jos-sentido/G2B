@@ -238,6 +238,9 @@ export const companies = [
     note: "+20 años · Plantas en Silao (GTO) y Cadereyta (NL)",
     color: "#C72A1C",
     icon: "road",
+    website: "", // ⏳ PENDIENTE
+    logo: "",   // ⏳ PENDIENTE — ruta /img/logos/camex.svg
+    img: "",    // ⏳ PENDIENTE — foto Higgsfield /img/empresas/camex.jpg
   },
   {
     slug: "fragsa",
@@ -247,6 +250,9 @@ export const companies = [
     services: ["Edificación industrial", "Naves industriales", "Centros comerciales", "Hoteles y turismo", "Instalaciones especiales"],
     color: "#163C7A",
     icon: "building",
+    website: "", // ⏳ PENDIENTE
+    logo: "",   // ⏳ PENDIENTE
+    img: "",    // ⏳ PENDIENTE
   },
   {
     slug: "jalie-vali",
@@ -256,6 +262,9 @@ export const companies = [
     services: ["Plantas de tratamiento (PTAR)", "Redes hidráulicas y sanitarias", "Colectores y drenaje profundo", "Desazolves y cauces", "Rehabilitación de presas"],
     color: "#3F7E2F",
     icon: "droplet",
+    website: "", // ⏳ PENDIENTE
+    logo: "",   // ⏳ PENDIENTE
+    img: "",    // ⏳ PENDIENTE
   },
   {
     slug: "gemco",
@@ -265,6 +274,9 @@ export const companies = [
     services: ["Diseño arquitectónico e ingeniería", "Construcción de alto nivel", "Proyectos a la medida", "Gestión integral", "Desarrollo y comercialización"],
     color: "#E2641A",
     icon: "factory",
+    website: "", // ⏳ PENDIENTE
+    logo: "",   // ⏳ PENDIENTE
+    img: "",    // ⏳ PENDIENTE
   },
   {
     slug: "vigasa",
@@ -274,6 +286,9 @@ export const companies = [
     services: ["Ingeniería y diseño (BIM)", "Fabricación industrializada", "Puentes metálicos", "Naves y centros logísticos", "Montaje especializado"],
     color: "#2C7BBF",
     icon: "beam",
+    website: "", // ⏳ PENDIENTE
+    logo: "",   // ⏳ PENDIENTE
+    img: "",    // ⏳ PENDIENTE
   },
 ];
 
