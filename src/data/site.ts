@@ -240,7 +240,7 @@ export const companies = [
     icon: "road",
     website: "", // ⏳ PENDIENTE
     logo: "",   // ⏳ PENDIENTE — ruta /img/logos/camex.svg
-    img: "",    // ⏳ PENDIENTE — foto Higgsfield /img/empresas/camex.jpg
+    img: "/img/empresas/camex.png",
   },
   {
     slug: "fragsa",
@@ -252,7 +252,7 @@ export const companies = [
     icon: "building",
     website: "", // ⏳ PENDIENTE
     logo: "",   // ⏳ PENDIENTE
-    img: "",    // ⏳ PENDIENTE
+    img: "/img/empresas/fragsa.png",
   },
   {
     slug: "jalie-vali",
@@ -264,7 +264,7 @@ export const companies = [
     icon: "droplet",
     website: "", // ⏳ PENDIENTE
     logo: "",   // ⏳ PENDIENTE
-    img: "",    // ⏳ PENDIENTE
+    img: "/img/empresas/jalie-vali.png",
   },
   {
     slug: "gemco",
@@ -276,7 +276,7 @@ export const companies = [
     icon: "factory",
     website: "", // ⏳ PENDIENTE
     logo: "",   // ⏳ PENDIENTE
-    img: "",    // ⏳ PENDIENTE
+    img: "/img/empresas/gemco.png",
   },
   {
     slug: "vigasa",
@@ -288,7 +288,7 @@ export const companies = [
     icon: "beam",
     website: "", // ⏳ PENDIENTE
     logo: "",   // ⏳ PENDIENTE
-    img: "",    // ⏳ PENDIENTE
+    img: "/img/empresas/vigasa.png",
   },
 ];
 
