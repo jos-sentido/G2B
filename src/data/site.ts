@@ -274,7 +274,7 @@ export const companies = [
     services: ["Diseño arquitectónico e ingeniería", "Construcción de alto nivel", "Proyectos a la medida", "Gestión integral", "Desarrollo y comercialización"],
     color: "#E2641A",
     icon: "factory",
-    website: "", // ⏳ PENDIENTE
+    website: "https://www.gemco-construccion.com/", // ✅
     logo: "",   // ⏳ PENDIENTE
     img: "/img/empresas/gemco.png",
   },
@@ -286,7 +286,7 @@ export const companies = [
     services: ["Ingeniería y diseño (BIM)", "Fabricación industrializada", "Puentes metálicos", "Naves y centros logísticos", "Montaje especializado"],
     color: "#2C7BBF",
     icon: "beam",
-    website: "", // ⏳ PENDIENTE
+    website: "https://www.vigasa.mx/", // ✅
     logo: "",   // ⏳ PENDIENTE
     img: "/img/empresas/vigasa.png",
   },
