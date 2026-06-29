@@ -56,6 +56,18 @@ const num = String(idx + 1).padStart(2, "0");
               <a href="/#contacto" class="inline-flex items-center gap-2 rounded-lg px-6 py-3 font-semibold text-white transition-opacity hover:opacity-90" style={`background:${company.color}`}>
                 Solicitar propuesta <Icon name="arrow" class="w-4 h-4" />
               </a>
+              {company.website
+                ? (
+                  <a href={company.website} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-lg border border-white/25 px-6 py-3 font-semibold text-white hover:bg-white/10 transition-colors">
+                    Visitar sitio de {company.name} <Icon name="external" class="w-4 h-4" />
+                  </a>
+                )
+                : (
+                  <span class="inline-flex cursor-not-allowed items-center gap-2 rounded-lg border border-white/15 px-6 py-3 font-semibold text-steel-100/45" aria-disabled="true" title="Sitio oficial en preparación">
+                    Sitio oficial — próximamente <Icon name="external" class="w-4 h-4" />
+                  </span>
+                )
+              }
               <a href="#areas" class="inline-flex items-center gap-2 rounded-lg border border-white/25 px-6 py-3 font-semibold text-white hover:bg-white/10 transition-colors">
                 Ver especialidades
               </a>
