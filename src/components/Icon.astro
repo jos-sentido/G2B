@@ -26,6 +26,7 @@ const paths: Record<string, string> = {
   bolt: '<path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/>',
   ruler: '<path d="M3 17 17 3l4 4L7 21l-4-4Z"/><path d="m7.5 7.5 2 2M11 4l2 2M4 11l2 2M14.5 7.5l2 2"/>',
   chart: '<path d="M4 20V4M4 20h16M8 16v-5M12 16V8M16 16v-8"/>',
+  mexico: '<path fill="currentColor" stroke="none" d="M2 20 L1 15 L2 9 L4 5 L21 2 L22 6 L22 10 L22 12 L21 14 L18 16 L15 18 L11 18 L8 15 L6 12 L4 8 L5 9 L5 13 L4 18 Z"/>',
 };
 ---
 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class={cls} aria-hidden="true" set:html={paths[name] ?? ""}></svg>

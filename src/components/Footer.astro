@@ -15,7 +15,7 @@ const year = new Date().getFullYear();
       <h3 class="font-display font-semibold text-white mb-4 text-sm uppercase tracking-wider">Nuestras empresas</h3>
       <ul class="space-y-2.5 text-sm">
         {companies.map((c) => (
-          <li><a href={`#empresas`} class="text-steel-300 hover:text-water-400 transition-colors">{c.name} — {c.specialty}</a></li>
+          <li><a href={`/empresas/${c.slug}`} class="text-steel-300 hover:text-water-400 transition-colors">{c.name} — {c.specialty}</a></li>
         ))}
       </ul>
     </div>
@@ -23,10 +23,10 @@ const year = new Date().getFullYear();
     <div>
       <h3 class="font-display font-semibold text-white mb-4 text-sm uppercase tracking-wider">Empresa</h3>
       <ul class="space-y-2.5 text-sm">
-        <li><a href="#modelo" class="text-steel-300 hover:text-water-400 transition-colors">Modelo integral</a></li>
-        <li><a href="#especialidad" class="text-steel-300 hover:text-water-400 transition-colors">Áreas de especialidad</a></li>
-        <li><a href="#capacidad" class="text-steel-300 hover:text-water-400 transition-colors">Capacidad operativa</a></li>
-        <li><a href="#experiencia" class="text-steel-300 hover:text-water-400 transition-colors">Experiencia</a></li>
+        <li><a href="/#modelo" class="text-steel-300 hover:text-water-400 transition-colors">Modelo integral</a></li>
+        <li><a href="/#especialidad" class="text-steel-300 hover:text-water-400 transition-colors">Áreas de especialidad</a></li>
+        <li><a href="/#capacidad" class="text-steel-300 hover:text-water-400 transition-colors">Capacidad operativa</a></li>
+        <li><a href="/#experiencia" class="text-steel-300 hover:text-water-400 transition-colors">Experiencia</a></li>
       </ul>
     </div>
 
@@ -37,7 +37,7 @@ const year = new Date().getFullYear();
         <li class="flex items-center gap-2.5 text-steel-300"><Icon name="mail" class="w-4 h-4 text-water-400 shrink-0" /><span>{brand.contact.email || "Correo — pendiente"}</span></li>
         <li class="flex items-center gap-2.5 text-steel-300"><Icon name="pin" class="w-4 h-4 text-water-400 shrink-0" /><span>{brand.contact.address || "Dirección — pendiente"}</span></li>
       </ul>
-      <a href="#contacto" class="mt-5 inline-flex items-center gap-2 rounded-lg bg-water-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-water-500 transition-colors">
+      <a href="/#contacto" class="mt-5 inline-flex items-center gap-2 rounded-lg bg-water-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-water-500 transition-colors">
         Solicitar propuesta <Icon name="arrow" class="w-4 h-4" />
       </a>
     </div>
