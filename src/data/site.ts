@@ -262,7 +262,7 @@ export const companies = [
     services: ["Plantas de tratamiento (PTAR)", "Redes hidráulicas y sanitarias", "Colectores y drenaje profundo", "Desazolves y cauces", "Rehabilitación de presas"],
     color: "#3F7E2F",
     icon: "droplet",
-    website: "", // ⏳ PENDIENTE
+    website: "https://jalie-vali.com/", // ✅
     logo: "",   // ⏳ PENDIENTE
     img: "/img/empresas/jalie-vali.png",
   },

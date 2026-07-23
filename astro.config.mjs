@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://www.g2bconstructora.com', // TODO: confirmar dominio definitivo con el cliente
+  site: 'https://g2b.com.mx',
   vite: {
     plugins: [tailwindcss()],
   },
