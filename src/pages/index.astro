@@ -550,42 +550,46 @@ const readout = [
         </div>
 
         <form
+          id="contact-form"
           class="rounded-brand bg-white p-7 text-navy-900 shadow-2xl lg:p-8"
-          onsubmit="event.preventDefault(); this.querySelector('#form-msg').classList.remove('hidden');"
+          action="/api/contact"
+          method="POST"
         >
           <div class="grid gap-4 sm:grid-cols-2">
             <label class="block">
               <span class="text-sm font-medium">Nombre</span>
-              <input type="text" required autocomplete="name" class="mt-1 w-full rounded-lg border border-steel-300 px-3.5 py-2.5 text-sm outline-none focus:border-water-500 focus:ring-2 focus:ring-water-200" />
+              <input name="nombre" type="text" required autocomplete="name" class="mt-1 w-full rounded-lg border border-steel-300 px-3.5 py-2.5 text-sm outline-none focus:border-water-500 focus:ring-2 focus:ring-water-200" />
             </label>
             <label class="block">
               <span class="text-sm font-medium">Empresa / Dependencia</span>
-              <input type="text" autocomplete="organization" class="mt-1 w-full rounded-lg border border-steel-300 px-3.5 py-2.5 text-sm outline-none focus:border-water-500 focus:ring-2 focus:ring-water-200" />
+              <input name="empresa" type="text" autocomplete="organization" class="mt-1 w-full rounded-lg border border-steel-300 px-3.5 py-2.5 text-sm outline-none focus:border-water-500 focus:ring-2 focus:ring-water-200" />
             </label>
             <label class="block">
               <span class="text-sm font-medium">Correo</span>
-              <input type="email" required autocomplete="email" class="mt-1 w-full rounded-lg border border-steel-300 px-3.5 py-2.5 text-sm outline-none focus:border-water-500 focus:ring-2 focus:ring-water-200" />
+              <input name="correo" type="email" required autocomplete="email" class="mt-1 w-full rounded-lg border border-steel-300 px-3.5 py-2.5 text-sm outline-none focus:border-water-500 focus:ring-2 focus:ring-water-200" />
             </label>
             <label class="block">
               <span class="text-sm font-medium">Teléfono</span>
-              <input type="tel" autocomplete="tel" class="mt-1 w-full rounded-lg border border-steel-300 px-3.5 py-2.5 text-sm outline-none focus:border-water-500 focus:ring-2 focus:ring-water-200" />
+              <input name="telefono" type="tel" autocomplete="tel" class="mt-1 w-full rounded-lg border border-steel-300 px-3.5 py-2.5 text-sm outline-none focus:border-water-500 focus:ring-2 focus:ring-water-200" />
             </label>
           </div>
           <label class="mt-4 block">
             <span class="text-sm font-medium">Empresa del grupo de interés</span>
-            <select class="mt-1 w-full rounded-lg border border-steel-300 px-3.5 py-2.5 text-sm outline-none focus:border-water-500 focus:ring-2 focus:ring-water-200">
+            <select name="interes" class="mt-1 w-full rounded-lg border border-steel-300 px-3.5 py-2.5 text-sm outline-none focus:border-water-500 focus:ring-2 focus:ring-water-200">
               <option>Grupo G2B (proyecto integral)</option>
               {companies.map((c) => <option>{c.name} — {c.specialty}</option>)}
             </select>
           </label>
           <label class="mt-4 block">
             <span class="text-sm font-medium">Mensaje</span>
-            <textarea rows={3} class="mt-1 w-full rounded-lg border border-steel-300 px-3.5 py-2.5 text-sm outline-none focus:border-water-500 focus:ring-2 focus:ring-water-200"></textarea>
+            <textarea name="mensaje" rows={3} class="mt-1 w-full rounded-lg border border-steel-300 px-3.5 py-2.5 text-sm outline-none focus:border-water-500 focus:ring-2 focus:ring-water-200"></textarea>
           </label>
-          <button type="submit" class="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-water-600 px-6 py-3.5 font-semibold text-white hover:bg-water-500 transition-colors">
-            Enviar mensaje <Icon name="arrow" class="w-4 h-4" />
+          {/* Honeypot anti-spam: oculto para personas, tentador para bots */}
+          <input type="text" name="website" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+          <button id="contact-submit" type="submit" class="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-water-600 px-6 py-3.5 font-semibold text-white hover:bg-water-500 transition-colors disabled:opacity-60 disabled:cursor-not-allowed">
+            <span id="contact-submit-label">Enviar mensaje</span> <Icon name="arrow" class="w-4 h-4" />
           </button>
-          <p id="form-msg" role="status" aria-live="polite" class="mt-3 hidden text-center text-sm font-medium text-eco-600">¡Gracias! (Demo — falta conectar el envío del formulario.)</p>
+          <p id="form-msg" role="status" aria-live="polite" class="mt-3 hidden text-center text-sm font-medium"></p>
         </form>
       </div>
     </section>
@@ -626,5 +630,47 @@ const readout = [
     }, { threshold: 0.25 });
 
     document.querySelectorAll(".counter, .r-in, .water-draw").forEach((el) => io.observe(el));
+
+    // Envío del formulario de contacto vía /api/contact (Resend)
+    const form = document.getElementById("contact-form") as HTMLFormElement | null;
+    if (form) {
+      const msg = document.getElementById("form-msg") as HTMLElement;
+      const btn = document.getElementById("contact-submit") as HTMLButtonElement;
+      const label = document.getElementById("contact-submit-label") as HTMLElement;
+
+      const setMsg = (text: string, ok: boolean) => {
+        msg.textContent = text;
+        msg.classList.remove("hidden", "text-eco-600", "text-red-600");
+        msg.classList.add(ok ? "text-eco-600" : "text-red-600");
+      };
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        btn.disabled = true;
+        label.textContent = "Enviando…";
+        msg.classList.add("hidden");
+
+        try {
+          const res = await fetch("/api/contact", {
+            method: "POST",
+            body: new FormData(form),
+            headers: { Accept: "application/json" },
+          });
+          const data = await res.json().catch(() => ({}));
+
+          if (res.ok && data.ok) {
+            form.reset();
+            setMsg("¡Gracias! Tu mensaje fue enviado. Te contactaremos pronto.", true);
+          } else {
+            setMsg(data.error || "No se pudo enviar. Intenta de nuevo o escríbenos directamente.", false);
+          }
+        } catch {
+          setMsg("Hubo un problema de conexión. Intenta de nuevo en un momento.", false);
+        } finally {
+          btn.disabled = false;
+          label.textContent = "Enviar mensaje";
+        }
+      });
+    }
   </script>
 </Base>
