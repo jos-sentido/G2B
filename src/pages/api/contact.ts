@@ -11,7 +11,7 @@ const escape = (s: string) =>
   s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
 export const POST: APIRoute = async ({ request }) => {
-  const apiKey = import.meta.env.RESEND_API_KEY;
+  const apiKey = import.meta.env.RESEND_API_KEY ?? process.env.RESEND_API_KEY;
   if (!apiKey) {
     return json({ ok: false, error: "Servicio de correo no configurado." }, 500);
   }
