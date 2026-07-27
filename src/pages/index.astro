@@ -541,12 +541,14 @@ const readout = [
           <div class="mb-4 h-[3px] w-10 rounded-full bg-water-400"></div>
           <h2 class="font-display text-3xl font-bold lg:text-[2.4rem]">Construyamos juntos el siguiente proyecto</h2>
           <p class="mt-4 max-w-md text-lg text-steel-100/90">{brand.taglines.team}</p>
-          <ul class="mt-8 space-y-4 text-steel-100/85">
-            <li class="flex items-center gap-3"><Icon name="phone" class="w-5 h-5 shrink-0 text-water-400" /><span>{brand.contact.phone || "Teléfono — pendiente del cliente"}</span></li>
-            <li class="flex items-center gap-3"><Icon name="mail" class="w-5 h-5 shrink-0 text-water-400" /><span>{brand.contact.email || "Correo — pendiente del cliente"}</span></li>
-            <li class="flex items-center gap-3"><Icon name="whatsapp" class="w-5 h-5 shrink-0 text-water-400" /><span>{brand.contact.whatsapp || "WhatsApp — pendiente del cliente"}</span></li>
-            <li class="flex items-center gap-3"><Icon name="pin" class="w-5 h-5 shrink-0 text-water-400" /><span>{brand.contact.address || "Dirección — pendiente del cliente"}</span></li>
-          </ul>
+          {(brand.contact.phone || brand.contact.email || brand.contact.whatsapp || brand.contact.address) && (
+            <ul class="mt-8 space-y-4 text-steel-100/85">
+              {brand.contact.phone && <li class="flex items-center gap-3"><Icon name="phone" class="w-5 h-5 shrink-0 text-water-400" /><span>{brand.contact.phone}</span></li>}
+              {brand.contact.email && <li class="flex items-center gap-3"><Icon name="mail" class="w-5 h-5 shrink-0 text-water-400" /><span>{brand.contact.email}</span></li>}
+              {brand.contact.whatsapp && <li class="flex items-center gap-3"><Icon name="whatsapp" class="w-5 h-5 shrink-0 text-water-400" /><span>{brand.contact.whatsapp}</span></li>}
+              {brand.contact.address && <li class="flex items-center gap-3"><Icon name="pin" class="w-5 h-5 shrink-0 text-water-400" /><span>{brand.contact.address}</span></li>}
+            </ul>
+          )}
         </div>
 
         <form
