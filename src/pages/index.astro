@@ -6,52 +6,52 @@ import Icon from "../components/Icon.astro";
 import FlowLines from "../components/FlowLines.astro";
 import Monogram from "../components/Monogram.astro";
 import MexicoMap from "../components/MexicoMap.astro";
-import { brand, companies, integralModel, specialties, differentiators, audiencesGroup, capacity, experience } from "../data/site";
+import { brand, solutions, integralModel, specialties, differentiators, audiencesGroup, capacity, experience } from "../data/site";
 
 const totalCapacity = Object.values(capacity).flat().reduce((a, b) => a + b.qty, 0);
 const fmtM = (n: number) => "$" + (n / 1_000_000).toLocaleString("es-MX", { maximumFractionDigits: 1 }) + "M";
 const maxType = Math.max(...experience.byType.map((t) => t.amount));
 
 /* Líneas de obra con monto ejecutado documentado (CV Corporativo 2026).
-   Agrupa los 6 tipos de obra del PDF en 3 especialidades, cada una ligada a la
-   empresa del grupo que la opera. Montos reales — suman el total de obra pública. */
+   Agrupa los 6 tipos de obra del PDF en 3 especialidades. Montos reales —
+   suman el total de obra pública ejecutada por G2B. */
 const executedLines = [
   {
     title: "Redes sanitarias y pluviales",
     desc: "Drenaje sanitario, drenaje pluvial y cárcamos de bombeo y transferencia.",
     amount: 124068716.8 + 89772856.0 + 26441182.8,
-    empresa: "JALIE-VALI",
-    color: "#3F7E2F",
+    tag: "Obra hidráulica",
+    color: "#1693C9",
     icon: "network",
   },
   {
     title: "Protección hidráulica y desazolves",
     desc: "Desazolves de canales y arroyos, recuperación de cauces y presas.",
     amount: 158084700.0,
-    empresa: "JALIE-VALI",
-    color: "#3F7E2F",
+    tag: "Obra hidráulica",
+    color: "#1693C9",
     icon: "shield",
   },
   {
     title: "Pavimentación",
     desc: "Pavimento hidráulico y asfáltico para vialidades y urbanización.",
     amount: 86961353.7 + 23959604.1,
-    empresa: "CAMEX",
-    color: "#C72A1C",
+    tag: "Vialidad y urbanización",
+    color: "#0A235B",
     icon: "road",
   },
 ];
 
 const readout = [
-  { value: 943, prefix: "$", suffix: "M", label: "MXN ejecutados en obra", sub: "Trayectoria del grupo" },
-  { value: 5, prefix: "", suffix: "", label: "Empresas especializadas", sub: "Un solo grupo, toda la capacidad" },
+  { value: 943, prefix: "$", suffix: "M", label: "MXN ejecutados en obra", sub: "Trayectoria comprobada" },
+  { value: 5, prefix: "", suffix: "", label: "Líneas de solución", sub: "Infraestructura integral" },
   { value: totalCapacity, prefix: "+", suffix: "", label: "Equipos y plantas propias", sub: "Maquinaria pesada y especializada" },
 ];
 ---
 
 <Base
   title={`${brand.name} | Infraestructura que transforma México`}
-  description="Grupo Constructor G2B: plataforma empresarial mexicana integrada por 5 compañías especializadas en pavimentación, edificación, infraestructura hidráulica, desarrollo inmobiliario y estructuras de acero. Proyectos llave en mano de alto impacto nacional."
+  description="G2B Constructora: constructora mexicana especializada en infraestructura hidráulica, PTAR, protección hidráulica, redes sanitarias y pavimentación. Proyectos llave en mano de alto impacto nacional, con +$943M MXN ejecutados en obra."
 >
   <Header />
 
@@ -64,7 +64,7 @@ const readout = [
 
         <div class="lg:col-span-7">
           <p class="text-xs font-semibold uppercase tracking-[0.15em] text-water-300/80">
-            Plataforma empresarial · Cobertura nacional
+            Constructora mexicana · Cobertura nacional
           </p>
           <!-- H1 tipográfico con clamp para punch editorial en todos los breakpoints -->
           <h1 class="mt-7 font-display font-extrabold leading-[0.93] tracking-tight" style="font-size: clamp(2.8rem, 9vw, 7.5rem)">
@@ -73,25 +73,25 @@ const readout = [
             México.
           </h1>
           <p class="mt-7 max-w-xl text-lg text-steel-100/90 leading-relaxed">
-            Somos un grupo constructor integrado por cinco empresas especializadas, con la
-            capacidad técnica, operativa y financiera para desarrollar proyectos
-            <strong class="font-semibold text-white">llave en mano</strong> de alto impacto a nivel nacional.
+            Somos una constructora mexicana con la capacidad técnica, operativa y financiera
+            para diseñar, construir y operar proyectos
+            <strong class="font-semibold text-white">llave en mano</strong> de infraestructura de alto impacto a nivel nacional.
           </p>
           <div class="mt-9 flex flex-col sm:flex-row gap-4">
             <a href="#contacto" class="inline-flex items-center justify-center gap-2 rounded-lg bg-water-500 px-7 py-3.5 font-semibold text-white hover:bg-water-400 transition-colors">
               Contáctanos <Icon name="arrow" class="w-4 h-4" />
             </a>
-            <a href="#empresas" class="inline-flex items-center justify-center gap-2 rounded-lg border border-white/25 px-7 py-3.5 font-semibold text-white hover:bg-white/10 transition-colors">
-              Conocer el grupo
+            <a href="#soluciones" class="inline-flex items-center justify-center gap-2 rounded-lg border border-white/25 px-7 py-3.5 font-semibold text-white hover:bg-white/10 transition-colors">
+              Ver soluciones
             </a>
           </div>
         </div>
 
         <div class="lg:col-span-5">
-          <!-- Ficha del grupo -->
+          <!-- Ficha de la empresa -->
           <div class="rounded-brand border border-white/15 bg-white/[0.04] backdrop-blur-sm">
             <div class="flex items-center justify-between border-b border-white/10 px-6 py-3">
-              <span class="text-[11px] font-semibold uppercase tracking-[0.18em] text-steel-100/70">Ficha del grupo</span>
+              <span class="text-[11px] font-semibold uppercase tracking-[0.18em] text-steel-100/70">Ficha de la empresa</span>
               <span class="sec-index text-xs text-water-400">G2B · 2026</span>
             </div>
             <dl class="divide-y divide-white/10">
@@ -125,78 +125,54 @@ const readout = [
       </svg>
     </section>
 
-    <!-- ============ 02 · NUESTRAS EMPRESAS ============ -->
-    <section id="empresas" class="relative overflow-hidden py-20 lg:py-28">
+    <!-- ============ 02 · SOLUCIONES ============ -->
+    <section id="soluciones" class="relative overflow-hidden py-20 lg:py-28">
       <FlowLines tone="light" />
       <div class="container-g2b relative z-10">
         <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div class="max-w-2xl">
             <div class="mb-4 h-[3px] w-10 rounded-full bg-water-500"></div>
-            <h2 class="font-display text-3xl font-bold text-navy-900 lg:text-[2.6rem] lg:leading-[1.05]">Una plataforma, cinco empresas especializadas</h2>
+            <h2 class="font-display text-3xl font-bold text-navy-900 lg:text-[2.6rem] lg:leading-[1.05]">Cinco líneas de solución, una infraestructura integral</h2>
           </div>
-          <p class="max-w-sm text-steel-700">Cada compañía aporta su especialidad; juntas, cubren el ciclo completo de un proyecto de infraestructura.</p>
+          <p class="max-w-sm text-steel-700">Cada línea cubre una etapa del ciclo del agua y la obra civil; juntas, resuelven el proyecto completo de principio a fin.</p>
         </div>
 
         <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {companies.map((c, i) => (
-            <article
-              class="group flex flex-col overflow-hidden rounded-brand border border-steel-100 bg-white transition-all hover:-translate-y-1 hover:shadow-xl"
-            >
-              <!-- Área de foto (Higgsfield) / placeholder con gradiente de marca -->
-              <div class="relative h-44 overflow-hidden" style={`background: linear-gradient(140deg, ${c.color}28 0%, ${c.color}0a 100%); border-top: 3px solid ${c.color}`}>
-                {c.img
-                  ? <img src={c.img} alt={`${c.name} — obra`} class="h-full w-full object-cover" loading="lazy" />
-                  : (
-                    <>
-                      <!-- número watermark en el área de foto -->
-                      <span
-                        class="pointer-events-none absolute -right-3 -bottom-4 select-none font-display font-extrabold leading-none"
-                        style={`color:${c.color}; opacity:0.12; font-size:8rem`}
-                        aria-hidden="true"
-                      >{String(i + 1).padStart(2, "0")}</span>
-                    </>
-                  )
-                }
-                <!-- Logo / placeholder de logo -->
-                <div class="absolute bottom-3 left-4">
-                  {c.logo
-                    ? <img src={c.logo} alt={`Logo ${c.name}`} class="h-8 w-auto" />
-                    : (
-                      <span class="inline-block rounded bg-white/90 px-2.5 py-1 text-xs font-bold tracking-wide shadow-sm" style={`color:${c.color}`}>
-                        {c.name}
-                      </span>
-                    )
-                  }
+          {solutions.map((s, i) => (
+            <article class="group flex flex-col overflow-hidden rounded-brand border border-steel-100 bg-white transition-all hover:-translate-y-1 hover:shadow-xl">
+              <!-- Cabecera con gradiente de marca -->
+              <div class="relative h-28 overflow-hidden" style="background: linear-gradient(140deg, rgba(22,147,201,0.16) 0%, rgba(22,147,201,0.04) 100%); border-top: 3px solid var(--color-water-500)">
+                <span class="pointer-events-none absolute -right-3 -bottom-5 select-none font-display font-extrabold leading-none text-water-600/12" style="font-size:7rem" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
+                <div class="absolute bottom-3 left-4 flex h-11 w-11 items-center justify-center rounded-xl bg-white/90 text-water-600 shadow-sm">
+                  <Icon name={s.icon} class="w-5 h-5" />
                 </div>
+                {s.featured && (
+                  <span class="absolute right-3 top-3 inline-flex items-center rounded-full bg-water-600 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-white">Servicio estrella</span>
+                )}
               </div>
 
               <!-- Contenido -->
               <div class="relative flex flex-1 flex-col p-6">
-                <p class="text-xs font-semibold uppercase tracking-wider text-steel-500">{c.specialty}</p>
-                <p class="mt-2 text-sm leading-relaxed text-steel-700 flex-1">{c.desc}</p>
+                <h3 class="font-display text-lg font-bold text-navy-900">{s.title}</h3>
+                <p class="mt-2 text-sm leading-relaxed text-steel-700 flex-1">{s.short}</p>
                 <ul class="mt-4 space-y-1.5">
-                  {c.services.slice(0, 3).map((s) => (
+                  {s.services.slice(0, 3).map((srv) => (
                     <li class="flex items-center gap-2 text-sm text-steel-700">
-                      <Icon name="check" class="w-4 h-4 shrink-0 text-eco-500" />{s}
+                      <Icon name="check" class="w-4 h-4 shrink-0 text-eco-500" />{srv}
                     </li>
                   ))}
                 </ul>
-                {c.note && <p class="mt-3 text-xs text-steel-500">{c.note}</p>}
-                <a
-                  href={`/empresas/${c.slug}`}
-                  class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold transition-colors hover:opacity-80"
-                  style={`color:${c.color}`}
-                >
-                  Ver especialidad <Icon name="arrow" class="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                <a href="#contacto" class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-water-600 transition-colors hover:text-water-700">
+                  Solicitar información <Icon name="arrow" class="w-4 h-4 transition-transform group-hover:translate-x-1" />
                 </a>
               </div>
             </article>
           ))}
-          <!-- Tarjeta cierre del grupo -->
+          <!-- Tarjeta de cierre -->
           <article class="relative flex flex-col justify-center overflow-hidden rounded-brand bg-navy-800 p-7 text-white">
             <Monogram tone="dark" class="text-[10rem] -right-6 -bottom-10" />
-            <p class="relative font-display text-xl font-bold leading-snug">Un solo grupo,<br />toda la capacidad.</p>
-            <p class="relative mt-3 text-sm text-steel-100/80">Proyectos llave en mano que combinan la fuerza de las cinco empresas en una sola gestión.</p>
+            <p class="relative font-display text-xl font-bold leading-snug">Un solo equipo,<br />toda la capacidad.</p>
+            <p class="relative mt-3 text-sm text-steel-100/80">Proyectos llave en mano que integran todas las líneas en una sola gestión, con maquinaria y equipo propios.</p>
             <a href="#contacto" class="relative mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-water-400 hover:text-water-300 transition-colors">
               Hablemos de tu proyecto <Icon name="arrow" class="w-4 h-4" />
             </a>
@@ -398,7 +374,7 @@ const readout = [
           <div class="lg:col-span-4">
             <div class="mb-4 h-[3px] w-10 rounded-full bg-water-400"></div>
             <h2 class="font-display text-3xl font-bold lg:text-[2.4rem] lg:leading-[1.05]">Infraestructura propia, lista para cualquier reto</h2>
-            <p class="mt-4 text-steel-100/75">Maquinaria, plantas y transporte propios que permiten al grupo ejecutar múltiples proyectos de gran escala con eficiencia, seguridad y calidad.</p>
+            <p class="mt-4 text-steel-100/75">Maquinaria, plantas y transporte propios que nos permiten ejecutar múltiples proyectos de gran escala con eficiencia, seguridad y calidad.</p>
             <div class="mt-8 border-t-2 border-water-400 pt-5">
               <p class="text-xs uppercase tracking-widest text-water-400/70">Total de equipos</p>
               <p class="stat-mega mt-1 leading-none" style="font-size: clamp(3.5rem, 8vw, 6.5rem)">
@@ -487,7 +463,7 @@ const readout = [
                   </div>
                   <span class="inline-flex items-center gap-2 rounded-full bg-paper px-3 py-1.5 text-xs font-bold" style={`color:${l.color}`}>
                     <span class="h-2 w-2 rounded-full" style={`background:${l.color}`}></span>
-                    {l.empresa}
+                    {l.tag}
                   </span>
                 </div>
                 <p class="stat-mega mt-6 text-3xl font-bold text-navy-900">{fmtM(l.amount)}</p>
@@ -576,10 +552,10 @@ const readout = [
             </label>
           </div>
           <label class="mt-4 block">
-            <span class="text-sm font-medium">Empresa del grupo de interés</span>
+            <span class="text-sm font-medium">Solución de interés</span>
             <select name="interes" class="mt-1 w-full rounded-lg border border-steel-300 px-3.5 py-2.5 text-sm outline-none focus:border-water-500 focus:ring-2 focus:ring-water-200">
-              <option>Grupo G2B (proyecto integral)</option>
-              {companies.map((c) => <option>{c.name} — {c.specialty}</option>)}
+              <option>Proyecto integral (llave en mano)</option>
+              {solutions.map((s) => <option>{s.title}</option>)}
             </select>
           </label>
           <label class="mt-4 block">

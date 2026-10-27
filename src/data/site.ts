@@ -5,13 +5,12 @@
    ============================================================ */
 
 export const brand = {
-  name: "Grupo Constructor G2B",
-  group: "Grupo Constructor G2B", // ✅
+  name: "G2B Constructora",
+  group: "G2B Constructora",
   concept: "Infraestructura que transforma México.", // ✅ rector NUEVO (doc 2026)
   taglines: {
-    // ✅ tomados textualmente del documento del grupo
     primary: "Construimos hoy el futuro de México.",
-    team: "Un solo grupo, toda la capacidad para construir el futuro de México.",
+    team: "Toda la capacidad para construir el futuro de México.",
     closing: "Unidos somos más fuertes, juntos llegamos más lejos.",
   },
   pillars: ["Ingeniería", "Construcción", "Resultados"], // ✅
@@ -223,74 +222,9 @@ export const audiences = {
 };
 
 /* ============================================================
-   GRUPO CONSTRUCTOR G2B — estructura nueva (doc 2026)
-   ✅ validado contra "Grupo constructor G2B.pdf"
+   G2B CONSTRUCTORA — estructura integral (doc 2026)
+   ✅ validado contra el CV Corporativo 2026
    ============================================================ */
-
-/* Las 5 empresas especializadas del grupo */
-export const companies = [
-  {
-    slug: "camex",
-    name: "CAMEX",
-    specialty: "Hidrocarburos, asfaltos y pavimentación",
-    desc: "Importación, comercialización y suministro de hidrocarburos, asfaltos modificados, emulsiones y mezclas asfálticas. Especialistas en pavimentación, conservación carretera, urbanización y estabilización de suelos.",
-    services: ["Hidrocarburos", "Asfaltos modificados", "Emulsiones", "Mezclas asfálticas", "Pavimentación y conservación vial"],
-    note: "+20 años · Plantas en Silao (GTO) y Cadereyta (NL)",
-    color: "#C72A1C",
-    icon: "road",
-    website: "", // ⏳ PENDIENTE
-    logo: "",   // ⏳ PENDIENTE — ruta /img/logos/camex.svg
-    img: "/img/empresas/camex.png",
-  },
-  {
-    slug: "fragsa",
-    name: "FRAGSA",
-    specialty: "Edificación e ingeniería de instalaciones",
-    desc: "Edificación industrial, comercial e institucional e infraestructura: naves industriales, centros comerciales, hoteles de gran turismo e instalaciones especiales.",
-    services: ["Edificación industrial", "Naves industriales", "Centros comerciales", "Hoteles y turismo", "Instalaciones especiales"],
-    color: "#163C7A",
-    icon: "building",
-    website: "", // ⏳ PENDIENTE
-    logo: "",   // ⏳ PENDIENTE
-    img: "/img/empresas/fragsa.png",
-  },
-  {
-    slug: "jalie-vali",
-    name: "JALIE-VALI",
-    specialty: "Infraestructura hidráulica, sanitaria y obra civil",
-    desc: "Plantas de tratamiento de agua, sistemas de conducción, redes hidráulicas y sanitarias, colectores, drenaje profundo, desazolves, recuperación de cauces y rehabilitación de presas.",
-    services: ["Plantas de tratamiento (PTAR)", "Redes hidráulicas y sanitarias", "Colectores y drenaje profundo", "Desazolves y cauces", "Rehabilitación de presas"],
-    color: "#3F7E2F",
-    icon: "droplet",
-    website: "https://jalie-vali.com/", // ✅
-    logo: "",   // ⏳ PENDIENTE
-    img: "/img/empresas/jalie-vali.png",
-  },
-  {
-    slug: "gemco",
-    name: "GEMCO",
-    specialty: "Desarrollo inmobiliario, industrial y comercial",
-    desc: "Diseño, desarrollo, construcción y comercialización de espacios industriales, comerciales y corporativos, con gestión integral de proyectos.",
-    services: ["Diseño arquitectónico e ingeniería", "Construcción de alto nivel", "Proyectos a la medida", "Gestión integral", "Desarrollo y comercialización"],
-    color: "#E2641A",
-    icon: "factory",
-    website: "https://www.gemco-construccion.com/", // ✅
-    logo: "",   // ⏳ PENDIENTE
-    img: "/img/empresas/gemco.png",
-  },
-  {
-    slug: "vigasa",
-    name: "VIGASA",
-    specialty: "Estructuras de acero, fabricación y montaje",
-    desc: "Ingeniería, diseño, fabricación y montaje de estructuras de acero para proyectos industriales, logísticos y comerciales: puentes metálicos, naves y edificios verticales. Tecnología BIM e ISO 9001.",
-    services: ["Ingeniería y diseño (BIM)", "Fabricación industrializada", "Puentes metálicos", "Naves y centros logísticos", "Montaje especializado"],
-    color: "#2C7BBF",
-    icon: "beam",
-    website: "https://www.vigasa.mx/", // ✅
-    logo: "",   // ⏳ PENDIENTE
-    img: "/img/empresas/vigasa.png",
-  },
-];
 
 /* Modelo integral — proyectos llave en mano */
 export const integralModel = [
@@ -302,7 +236,7 @@ export const integralModel = [
   { n: 6, title: "Operación", desc: "Puesta en marcha y operación de la infraestructura." },
 ];
 
-/* Áreas de especialidad del grupo */
+/* Áreas de especialidad de G2B */
 export const specialties = [
   { label: "Infraestructura", icon: "road" },
   { label: "Ingeniería", icon: "ruler" },
@@ -314,9 +248,9 @@ export const specialties = [
   { label: "Desarrollo industrial", icon: "factory" },
 ];
 
-/* Diferenciadores del grupo */
+/* Diferenciadores de G2B */
 export const differentiators = [
-  { t: "Capacidad integral", d: "Soluciones completas bajo un solo grupo." },
+  { t: "Capacidad integral", d: "Soluciones completas de principio a fin." },
   { t: "Infraestructura propia", d: "Maquinaria, plantas y equipo propios." },
   { t: "Ejecución simultánea", d: "Múltiples frentes de obra al mismo tiempo." },
   { t: "Experiencia y respaldo", d: "Trayectoria comprobada a nivel nacional." },
@@ -324,7 +258,7 @@ export const differentiators = [
   { t: "Impacto nacional", d: "Proyectos estratégicos para el desarrollo de México." },
 ];
 
-/* Para quién trabajamos (grupo) */
+/* Para quién trabajamos */
 export const audiencesGroup = [
   { icon: "gov", title: "Gobierno", desc: "Dependencias, municipios, estados y organismos para obra pública e infraestructura estratégica." },
   { icon: "chart", title: "Inversionistas", desc: "Proyectos de alto impacto con solidez financiera y ejecución confiable." },

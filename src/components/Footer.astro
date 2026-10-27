@@ -1,21 +1,21 @@
 ---
-import { brand, companies } from "../data/site";
+import { brand, solutions } from "../data/site";
 import Icon from "./Icon.astro";
 const year = new Date().getFullYear();
 ---
 <footer class="bg-navy-950 text-steel-100">
   <div class="container-g2b py-14 grid gap-10 md:grid-cols-2 lg:grid-cols-4">
     <div class="lg:col-span-1">
-      <img src="/img/logo-g2b-white.png" alt="Grupo Constructor G2B" class="h-14 w-auto mb-4" width="150" height="115" />
+      <img src="/img/logo-g2b-white.png" alt="G2B Constructora" class="h-14 w-auto mb-4" width="150" height="115" />
       <p class="text-sm text-steel-300 leading-relaxed">{brand.concept}</p>
       <p class="mt-4 text-xs text-steel-300/70">{brand.group}</p>
     </div>
 
     <div>
-      <h3 class="font-display font-semibold text-white mb-4 text-sm uppercase tracking-wider">Nuestras empresas</h3>
+      <h3 class="font-display font-semibold text-white mb-4 text-sm uppercase tracking-wider">Soluciones</h3>
       <ul class="space-y-2.5 text-sm">
-        {companies.map((c) => (
-          <li><a href={`/empresas/${c.slug}`} class="text-steel-300 hover:text-water-400 transition-colors">{c.name} — {c.specialty}</a></li>
+        {solutions.map((s) => (
+          <li><a href="/#soluciones" class="text-steel-300 hover:text-water-400 transition-colors">{s.title}</a></li>
         ))}
       </ul>
     </div>
